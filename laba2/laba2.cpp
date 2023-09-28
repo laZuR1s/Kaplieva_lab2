@@ -34,7 +34,8 @@ int main()
 			do
 			{
 				isError = false;
-				std::cout << "\n¬ведите значение x: ";
+
+				std::cout << "\n¬ведите значение x: "; 
 
 				if (!(std::cin >> x))
 				{
