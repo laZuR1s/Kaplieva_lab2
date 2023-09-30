@@ -20,7 +20,7 @@ int main()
 
 			if (!(std::cin >> choice && choice >= 1 && choice <= 3))
 			{
-				std::cout << "\nInput error\n";
+				std::cout << "\nВведите корректный пункт меню!\n";
 				std::cin.clear();
 				std::cin.ignore(std::cin.rdbuf()->in_avail());
 				isError = true;
@@ -31,7 +31,7 @@ int main()
 			
 			double x;
 			bool isError = false;
-			do
+			do 
 			{
 				isError = false;
 
@@ -39,15 +39,14 @@ int main()
 
 				if (!(std::cin >> x))
 				{
-					std::cout << "\nInput error\n";
+					std::cout << "\nВведите корректное значение x (любое число) !\n";
 					std::cin.clear();
 					std::cin.ignore(std::cin.rdbuf()->in_avail());
 					isError = true;
 				}
-			} while (isError);
+			} while (isError); 
 
 
-			//std::cout << std::setw(26) << std::left << "Точное значение" << " = " << std::fixed << std::setprecision(11) << asin(x) << '\n';
 
 			if (choice == 1)
 			{
@@ -67,8 +66,8 @@ int main()
 					
 					
 				}
-				std::cout << '\n' << std::setw(28) << std::left << "Точное значение" << " = " << std::fixed << std::setprecision(11) << cosh(x) << '\n';
-				std::cout << std::setw(28) << std::left << "Приближенное значение" << " = " << std::fixed << std::setprecision(11) << res << '\n';
+				std::cout << '\n' << std::setw(28) << std::left << "Приближенное значение" << " = " << std::fixed << std::setprecision(11) << res << '\n';
+				std::cout << std::setw(28) << std::left << "Точное значение" << " = " << std::fixed << std::setprecision(11) << cosh(x) << '\n';
 
 			}
 			else
@@ -82,26 +81,41 @@ int main()
 				double res = 1;
 				int count = 0;
 				bool isCalculated = true;
-				while (term>eps/10)
+				while (abs(term)>eps)
 				{
 					
 					term = (term * x * x) / (fact * (fact + 1));
 					res = res + term;
 					fact = fact + 2;
-					count++;
-					if (term < eps && isCalculated)
+					
+					/*if (abs(term) < eps && isCalculated)
 					{
-						std::cout << std::setw(28) << std::left << "\nПриближенное значение" << " = " << std::fixed << std::setprecision(11) << res << '\n';
+						std::cout << '\n' << std::setw(28) << std::left << "Приближенное значение" << " = " << std::fixed << std::setprecision(11) << res << '\n';
 						isCalculated = false;
 
 					}
+					else*/
+						count++;
 				}
-				std::cout << std::setw(28) << std::left << "Значение c большей точностью" << " = " << std::fixed << std::setprecision(11) << res << '\n';
-				std::cout << std::setw(28) << std::left << "Точное значение" << " = " << std::fixed << std::setprecision(11) << cosh(x) << '\n';
-				std::cout << "Количество слагаемых: " << count<<'\n';
+				std::cout << '\n' << std::setw(28) << std::left << "Приближенное значение" << " = " << std::fixed << std::setprecision(11) << res << '\n';
+				std::cout << "Количество слагаемых: " << count << '\n';
+
+				while (abs(term) > eps/10)
+				{
+
+					term = (term * x * x) / (fact * (fact + 1));
+					res = res + term;
+					fact = fact + 2;
+
+					
+					count++;
+				}
+
+				std::cout<<'\n' << std::setw(28) << std::left << "Значение c большей точностью" << " = " << std::fixed << std::setprecision(11) << res << '\n';
+				std::cout << "Количество слагаемых: " << count << '\n';
+
+				std::cout<<'\n' << std::setw(28) << std::left << "Точное значение" << " = " << std::fixed << std::setprecision(11) << cosh(x) << '\n';
 			}
-			// вывод результата
-			//std::cout << std::setw(26) << std::left << "Приближенное значение" << " = " << std::fixed << std::setprecision(11) << asin(x) << '\n';
 
 
 			std::cout << "\nЗавершить работу? (Y/любая клавиша): ";
